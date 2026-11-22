@@ -29,11 +29,11 @@ from oat15a_pod import PodConfig, load_oat15a_data, make_triangulation, resolve_
 class KernelDLConfig:
     """Configuration for the OAT15A skEDMD-DL experiment."""
 
-    data_root: str = "F:/MY JOURNEY/data-driven_model"
+    data_root: str = str(Path(__file__).resolve().parents[1] / "data" / "oat15a")
     data_dir: str | None = None
-    pod_dmd_results: str = (
-        "E:/Agent/koopman_sciml/results/oat15a_pod_dmd_stride2/"
-        "oat15a_stride2_pod_dmd_results.npz"
+    pod_dmd_results: str = str(
+        Path(__file__).resolve().parents[1]
+        / "results" / "oat15a_pod_dmd_stride2" / "oat15a_stride2_pod_dmd_results.npz"
     )
     stride: int = 2
     state_rank: int = 5

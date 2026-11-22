@@ -18,7 +18,7 @@ from oat15a_kedmd_dl import KernelDLConfig, run_kedmd_dl_analysis
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data-root", default="F:/MY JOURNEY/data-driven_model")
+    parser.add_argument("--data-root", default=str(PROJECT_ROOT / "data" / "oat15a"))
     parser.add_argument("--data-dir", default=None)
     parser.add_argument(
         "--pod-dmd-results",

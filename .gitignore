@@ -15,3 +15,10 @@ Thumbs.db
 
 # Local preview captures
 .preview/
+
+# Original datasets and locally generated experiment artifacts
+/data/
+/figures/
+/results/
+/output/
+/tmp/

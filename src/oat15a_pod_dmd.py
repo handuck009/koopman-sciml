@@ -36,7 +36,7 @@ from oat15a_pod import (
 class ComparisonConfig:
     """Configuration for the stride-sampled POD-DMD comparison."""
 
-    data_root: str = "F:/MY JOURNEY/data-driven_model"
+    data_root: str = str(Path(__file__).resolve().parents[1] / "data" / "oat15a")
     data_dir: str | None = None
     base_dt: float = 0.03647971526
     snapshot_start_time: float = 110.28

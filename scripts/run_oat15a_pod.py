@@ -18,7 +18,7 @@ from oat15a_pod import PodConfig, run_full_pod_analysis
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data-root", default="F:/MY JOURNEY/data-driven_model")
+    parser.add_argument("--data-root", default=str(PROJECT_ROOT / "data" / "oat15a"))
     parser.add_argument("--data-dir", default=None)
     parser.add_argument("--dt", type=float, default=0.03647971526)
     parser.add_argument("--snapshot-start-time", type=float, default=110.28)

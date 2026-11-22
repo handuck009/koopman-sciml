@@ -1,0 +1,8 @@
+# Core versions used in the local end-to-end verification.
+numpy==2.0.2
+matplotlib==3.9.2
+torch==2.5.1
+
+# Notebook interface and Python kernel.
+jupyterlab>=4,<5
+ipykernel>=6,<7

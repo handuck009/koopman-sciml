@@ -7,6 +7,7 @@ one pressure field on the same unstructured quadrilateral mesh.
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -19,7 +20,7 @@ import numpy as np
 class PodConfig:
     """Configuration for full-snapshot POD analysis."""
 
-    data_root: str = "F:/MY JOURNEY/data-driven_model"
+    data_root: str = str(Path(__file__).resolve().parents[1] / "data" / "oat15a")
     data_dir: str | None = None
     dt: float = 0.03647971526
     snapshot_start_time: float = 110.28
@@ -34,7 +35,17 @@ class PodConfig:
 
 
 def find_oat15a_data_dir(root: Path) -> Path:
-    """Find the OAT15A data directory without hard-coding Chinese path names."""
+    """Accept a direct data folder or the original nested assignment layout."""
+
+    if not root.is_dir():
+        raise FileNotFoundError(
+            f"OAT15A data directory does not exist: {root}. "
+            "Place the four input .dat files in data/oat15a, set OAT15A_DATA_DIR, "
+            "or pass --data-dir. See README.md for data preparation."
+        )
+    required = ("coordinate.dat", "node.dat", "Snapshotp.dat", "OUTPUT.dat")
+    if any((root / name).exists() for name in required):
+        return root
 
     assignment_dirs = [p for p in root.iterdir() if p.is_dir() and "DMD" in p.name]
     if not assignment_dirs:
@@ -51,8 +62,9 @@ def find_oat15a_data_dir(root: Path) -> Path:
 def resolve_data_dir(config: PodConfig) -> Path:
     """Resolve the configured data directory."""
 
-    if config.data_dir:
-        data_dir = Path(config.data_dir)
+    configured_dir = config.data_dir or os.environ.get("OAT15A_DATA_DIR")
+    if configured_dir:
+        data_dir = Path(configured_dir).expanduser()
     else:
         data_dir = find_oat15a_data_dir(Path(config.data_root))
 

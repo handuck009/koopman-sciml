@@ -18,7 +18,7 @@ from oat15a_pod_dmd import ComparisonConfig, run_stride_pod_dmd_analysis
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data-root", default="F:/MY JOURNEY/data-driven_model")
+    parser.add_argument("--data-root", default=str(PROJECT_ROOT / "data" / "oat15a"))
     parser.add_argument("--data-dir", default=None)
     parser.add_argument("--base-dt", type=float, default=0.03647971526)
     parser.add_argument("--snapshot-start-time", type=float, default=110.28)
